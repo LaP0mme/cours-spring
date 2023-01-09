@@ -39,15 +39,18 @@ public class CountryRepositoryTest {
 
     @Test
     void testPopPays(){
-        log.info("On teste le calcul de la population d'un pays");
-        assertEquals(countryDAO.getPopPays(1), 12);
+        assertEquals(countryDAO.getPopulationPourPays(1), 12);
+        assertEquals(countryDAO.getPopulationPourPays(2), 18);
+        assertEquals(countryDAO.getPopulationPourPays(3), 27);
     }
 
     @Test
     void testListPopPays(){
-        log.info("On teste le calcul des populations de tout les pays de la base");
-        List<PaysPop> poppays = countryDAO.getListPopulationPays();
+        List<PaysPop> poppays = countryDAO.getListPopulationTousLesPays();
         assertEquals("France", poppays.get(0).getNom());
-        assertEquals(12, poppays.get(0).getPop());
+        assertEquals(12, poppays.get(0).getPopulation());
+
+        assertEquals("United Kingdom", poppays.get(1).getNom());
+        assertEquals(18, poppays.get(1).getPopulation());
     }
 }

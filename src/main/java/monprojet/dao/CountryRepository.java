@@ -3,7 +3,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import monprojet.entity.City;
 import monprojet.entity.Country;
 import monprojet.dto.PaysPop;
 
@@ -14,11 +13,11 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
             "FROM City " +
             "WHERE country_id = :id",
             nativeQuery= true)
-    public Integer getPopPays(Integer id);
+    public Integer getPopulationPourPays(Integer id);
 
-    @Query(value = "SELECT Country.name as nom, SUM(population) as pop " +
+    @Query(value = "SELECT Country.name as nom, SUM(population) as population " +
             "FROM City INNER JOIN Country On Country.id = City.country_id " +
             "GROUP BY City.country_id",
             nativeQuery = true)
-    public List<PaysPop> getListPopulationPays();
+    public List<PaysPop> getListPopulationTousLesPays();
 }
